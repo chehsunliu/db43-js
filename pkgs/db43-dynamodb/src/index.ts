@@ -3,12 +3,11 @@ import {
   DynamoDBDocumentClient,
   paginateScan,
   BatchWriteCommand,
+  BatchWriteCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
-import {
-  DynamoDBClient,
-  ListTablesCommand,
-  DescribeTableCommand,
-} from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, ListTablesCommand, DescribeTableCommand } from "@aws-sdk/client-dynamodb";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const maxWindowSize = 25;
 
@@ -34,13 +33,22 @@ export class DynamoDbPlugin implements Plugin {
 
   truncate = async (): Promise<void> => {
     const tableMeta = await this.getTableMeta();
-    const tasks = Object.entries(tableMeta).map(([tableName, meta]) =>
-      this.truncateTable(tableName, meta.primaryKeys),
-    );
+    const tasks = Object.entries(tableMeta).map(([tableName, meta]) => this.truncateTable(tableName, meta.primaryKeys));
     await Promise.all(tasks);
   };
 
-  load = async (folder: string): Promise<void> => {};
+  load = async (folder: string): Promise<void> => {
+    const tableMeta = await this.getTableMeta();
+
+    const tasks = [];
+    for (const tableName in tableMeta) {
+      const filepath = path.join(folder, `raw.${tableName}.json`);
+      if (fs.existsSync(filepath)) {
+        tasks.push(this.loadData(tableName, filepath));
+      }
+    }
+    await Promise.all(tasks);
+  };
 
   private getTableMeta = async (): Promise<TableMeta> => {
     if (this._tableMeta !== undefined) {
@@ -51,11 +59,7 @@ export class DynamoDbPlugin implements Plugin {
     const tableNames = r.TableNames ?? [];
 
     this._tableMeta = {};
-    const rs = await Promise.all(
-      tableNames.map((t) =>
-        this.client.send(new DescribeTableCommand({ TableName: t })),
-      ),
-    );
+    const rs = await Promise.all(tableNames.map((t) => this.client.send(new DescribeTableCommand({ TableName: t }))));
 
     for (const r of rs) {
       const t = r.Table;
@@ -72,10 +76,7 @@ export class DynamoDbPlugin implements Plugin {
   };
 
   private truncateTable = async (tableName: string, primaryKeys: string[]) => {
-    const paginator = paginateScan(
-      { client: this.docClient },
-      { TableName: tableName },
-    );
+    const paginator = paginateScan({ client: this.docClient }, { TableName: tableName });
 
     const items = [];
     for await (const page of paginator) {
@@ -101,6 +102,24 @@ export class DynamoDbPlugin implements Plugin {
       const command = new BatchWriteCommand({
         RequestItems: {
           [tableName]: chunk.map((item) => ({ DeleteRequest: { Key: item } })),
+        },
+      });
+      tasks.push(this.docClient.send(command));
+    }
+
+    await Promise.all(tasks);
+  };
+
+  private loadData = async (tableName: string, filepath: string) => {
+    const buffer = fs.readFileSync(filepath);
+    const items = JSON.parse(buffer.toString()) as object[];
+
+    const tasks = [];
+    for (let i = 0; i < items.length; i += maxWindowSize) {
+      const chunk = items.slice(i, i + maxWindowSize);
+      const command = new BatchWriteCommand({
+        RequestItems: {
+          [tableName]: chunk.map((item) => ({ PutRequest: { Item: item } })),
         },
       });
       tasks.push(this.docClient.send(command));

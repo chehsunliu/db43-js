@@ -5,6 +5,7 @@
     "pkgs/db43",
     "pkgs/db43-dynamodb",
     "pkgs/db43-mysql",
+    "pkgs/db43-test",
     "pkgs/db43-types"
   ],
   "devDependencies": {
@@ -17,6 +18,7 @@
   "scripts": {
     "build": "tsc --build",
     "fmt": "prettier -w ./pkgs ./tsconfig.*",
-    "test": "npm run --ws test"
+    "test": "npm run --ws test",
+    "test:dynamodb": "npm run -ws --if-present test:dynamodb"
   }
 }

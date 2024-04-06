@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./**/__tests__/**/*"],
+  "references": [
+    {
+      "path": "../db43"
+    },
+    {
+      "path": "../db43-dynamodb"
+    },
+    {
+      "path": "../db43-mysql"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "pk": "post#00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "post",
+    "type": "post",
+    "username": "alice",
+    "title": "What's the best distro",
+    "content": "What's the best Linux distro now? There are lots of...",
+    "postCreatedAt": 1712405283
+  },
+  {
+    "pk": "post#00000002-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "post",
+    "type": "post",
+    "username": "alice",
+    "title": "Designing the schema for DynamoDB is hard",
+    "content": "Blah Blah Blah Blah Blah",
+    "postCreatedAt": 1712405305
+  },
+  {
+    "pk": "post#00000003-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "post",
+    "type": "post",
+    "username": "bob",
+    "title": "VTI is so high that I couldn't afford it!!",
+    "content": "I know the theory of index investing, but it's just so hard to blah blah blah",
+    "postCreatedAt": 1712405308
+  },
+  {
+    "pk": "post#00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "comment#00000001-9d91-48b0-a40e-f5031e3038ad",
+    "type": "comment",
+    "username": "kevin",
+    "content": "Nice article!",
+    "commentCreatedAt": 1712405312
+  },
+  {
+    "pk": "post#00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "comment#00000002-9d91-48b0-a40e-f5031e3038ad",
+    "type": "comment",
+    "username": "bob",
+    "content": "hmm...",
+    "commentCreatedAt": 1712405314
+  },
+  {
+    "pk": "post#00000003-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "comment#00000003-9d91-48b0-a40e-f5031e3038ad",
+    "type": "comment",
+    "username": "louis",
+    "content": "Great.",
+    "commentCreatedAt": 1712405315
+  }
+]
