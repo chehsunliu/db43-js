@@ -2,6 +2,8 @@
   "name": "@chehsunliu/db43-test",
   "private": true,
   "version": "0.1.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.549.0",
     "@chehsunliu/db43": "^0.1.0",

@@ -1,6 +1,7 @@
-import * as db43 from "@chehsunliu/db43";
 import * as path from "node:path";
-import { repo } from "..";
+
+import * as db43 from "@chehsunliu/db43";
+import { repo } from "@chehsunliu/db43-test";
 
 describe("posts", () => {
   beforeEach(async () => {

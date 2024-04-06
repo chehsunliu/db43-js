@@ -1,13 +1,14 @@
-import { Plugin } from "@chehsunliu/db43-types";
+import { DynamoDBClient, ListTablesCommand, DescribeTableCommand } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
   paginateScan,
   BatchWriteCommand,
   BatchWriteCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
-import { DynamoDBClient, ListTablesCommand, DescribeTableCommand } from "@aws-sdk/client-dynamodb";
 import * as fs from "node:fs";
 import * as path from "node:path";
+
+import { Plugin } from "@chehsunliu/db43-types";
 
 const maxWindowSize = 25;
 

@@ -1,5 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, paginateQuery } from "@aws-sdk/lib-dynamodb";
+
 import { Post, PostRepository, Comment } from "./domain";
 
 export type DynamoDbPostRepositoryProps = {

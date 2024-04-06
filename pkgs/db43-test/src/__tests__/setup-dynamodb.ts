@@ -1,7 +1,8 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+
 import * as db43 from "@chehsunliu/db43";
 import { DynamoDbPlugin } from "@chehsunliu/db43-dynamodb";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { configure as configureRepo, DynamoDbPostRepository } from "..";
+import { configure as configureRepo, DynamoDbPostRepository } from "@chehsunliu/db43-test";
 
 const client = new DynamoDBClient({
   region: "us-west-2",

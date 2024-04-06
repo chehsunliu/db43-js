@@ -1,0 +1,8 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrderSeparation": true,
+  "importOrder": [
+    "^@chehsunliu/(.*)$",
+    "^[./]"
+  ]
+}
