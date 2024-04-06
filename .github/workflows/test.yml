@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-dynamodb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Start Docker services
+        run: |
+          docker-compose down --remove-orphans --timeout 3 || true
+          docker-compose up -d dynamodb
+
+      - name: Provision tables
+        run: docker-compose up --exit-code-from dynamodb-init dynamodb-init
+
+      - name: Run the tests
+        run: npm run test:dynamodb
+
+      - name: Shutdown containers
+        if: always()
+        run: docker-compose down --remove-orphans --timeout 3 || true
