@@ -1,0 +1,14 @@
+{
+  "name": "@chehsunliu/db43-dynamodb",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.549.0",
+    "@aws-sdk/lib-dynamodb": "^3.549.0",
+    "@chehsunliu/db43-types": "^0.1.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}

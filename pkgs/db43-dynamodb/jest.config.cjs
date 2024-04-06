@@ -1,6 +1,6 @@
 /** @type {import("jest").Config} */
 const config = {
-  displayName: "db43",
+  displayName: "db43-dynamodb",
   preset: "ts-jest",
   testEnvironment: "node",
 };

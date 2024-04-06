@@ -3,6 +3,8 @@
   "private": true,
   "workspaces": [
     "pkgs/db43",
+    "pkgs/db43-dynamodb",
+    "pkgs/db43-mysql",
     "pkgs/db43-types"
   ],
   "devDependencies": {

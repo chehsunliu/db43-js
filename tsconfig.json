@@ -5,6 +5,12 @@
       "path": "pkgs/db43"
     },
     {
+      "path": "pkgs/db43-dynamodb"
+    },
+    {
+      "path": "pkgs/db43-mysql"
+    },
+    {
       "path": "pkgs/db43-types"
     }
   ]
