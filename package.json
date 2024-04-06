@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "fmt": "prettier -w ./pkgs",
+    "fmt": "prettier -w ./pkgs ./tsconfig.*",
     "test": "npm run --ws test"
   }
 }
