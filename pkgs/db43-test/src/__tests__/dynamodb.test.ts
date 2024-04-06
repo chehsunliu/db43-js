@@ -89,3 +89,22 @@ describe("posts", () => {
     });
   });
 });
+
+describe("posts-without-comments", () => {
+  beforeEach(async () => {
+    await db43.truncate();
+    await db43.load({ folder: path.join(__dirname, "data-2") });
+  });
+
+  it("lists without comments", async () => {
+    const post = await repo().getById("00000001-f8ac-4a27-9aeb-9ae54c8fd0ea");
+    expect(post).toStrictEqual({
+      id: "00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
+      username: "alice",
+      title: "It's time to join NVIDIA",
+      content: "AI makes it more promising than before.",
+      createdAt: 1702418438,
+      comments: [],
+    });
+  });
+});

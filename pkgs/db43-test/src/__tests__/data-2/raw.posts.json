@@ -1,0 +1,11 @@
+[
+  {
+    "pk": "post#00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
+    "sk": "post",
+    "type": "post",
+    "username": "alice",
+    "title": "It's time to join NVIDIA",
+    "content": "AI makes it more promising than before.",
+    "postCreatedAt": 1702418438
+  }
+]
