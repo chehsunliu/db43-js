@@ -96,7 +96,7 @@ describe("posts-without-comments", () => {
     await db43.load({ folder: path.join(__dirname, "data-2") });
   });
 
-  it("lists without comments", async () => {
+  it("shows without comments", async () => {
     const post = await repo().getById("00000001-f8ac-4a27-9aeb-9ae54c8fd0ea");
     expect(post).toStrictEqual({
       id: "00000001-f8ac-4a27-9aeb-9ae54c8fd0ea",
