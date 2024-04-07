@@ -9,3 +9,4 @@ export const configure = (repo: PostRepository) => {
 export const repo = () => _repo!;
 
 export * from "./dynamodb";
+export * from "./mysql";

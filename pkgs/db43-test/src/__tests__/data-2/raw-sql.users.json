@@ -1,0 +1,22 @@
+[
+  {
+    "id": "00000001-3fc6-4995-bc75-f75569aeae6f",
+    "username": "alice",
+    "createdAt": 1712000000
+  },
+  {
+    "id": "00000002-3fc6-4995-bc75-f75569aeae6f",
+    "username": "bob",
+    "createdAt": 1712000000
+  },
+  {
+    "id": "00000003-3fc6-4995-bc75-f75569aeae6f",
+    "username": "kevin",
+    "createdAt": 1712000000
+  },
+  {
+    "id": "00000004-3fc6-4995-bc75-f75569aeae6f",
+    "username": "louis",
+    "createdAt": 1712000000
+  }
+]

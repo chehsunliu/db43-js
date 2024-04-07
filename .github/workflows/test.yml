@@ -37,3 +37,33 @@ jobs:
       - name: Shutdown containers
         if: always()
         run: docker-compose down --remove-orphans --timeout 3 || true
+
+  test-mysql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Start Docker services
+        run: |
+          docker-compose down --remove-orphans --timeout 3 || true
+          docker-compose up -d mariadb
+
+      - name: Provision tables
+        run: docker-compose up --exit-code-from mariadb-init mariadb-init
+
+      - name: Run the tests
+        run: npm run test:mysql
+
+      - name: Shutdown containers
+        if: always()
+        run: docker-compose down --remove-orphans --timeout 3 || true
