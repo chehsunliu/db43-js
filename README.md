@@ -13,4 +13,3 @@ Using NPM:
 ```sh
 npm install -D @chehsunliu/db43 @chehsunliu/db43-mysql @chehsunliu/db43-dynamodb
 ```
-
