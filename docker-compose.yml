@@ -26,3 +26,27 @@ services:
       AWS_ACCESS_KEY_ID: xxx
       AWS_SECRET_ACCESS_KEY: xxx
       DYNAMO_ENDPOINT: http://dynamodb:8000
+
+  mariadb:
+    image: public.ecr.aws/docker/library/mariadb:10.11
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: xxx
+    command: [ "--general-log=1", "--general-log-file=/tmp/query.log" ]
+
+  mariadb-init:
+    image: flyway/flyway:10
+    depends_on:
+      - mariadb
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./db-schemas/mysql
+        target: /flyway/sql
+    command:
+      - "-url=jdbc:mysql://mariadb:3306/demo?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
+      - "-user=root"
+      - "-password=xxx"
+      - "-connectRetries=60"
+      - "migrate"

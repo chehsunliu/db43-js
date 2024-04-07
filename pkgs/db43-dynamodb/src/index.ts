@@ -1,10 +1,5 @@
 import { DynamoDBClient, ListTablesCommand, DescribeTableCommand } from "@aws-sdk/client-dynamodb";
-import {
-  DynamoDBDocumentClient,
-  paginateScan,
-  BatchWriteCommand,
-  BatchWriteCommandOutput,
-} from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, paginateScan, BatchWriteCommand } from "@aws-sdk/lib-dynamodb";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
@@ -43,9 +38,15 @@ export class DynamoDbPlugin implements Plugin {
 
     const tasks = [];
     for (const tableName in tableMeta) {
+      const ddbFilepath = path.join(folder, `dynamodb.${tableName}.json`);
+      if (fs.existsSync(ddbFilepath)) {
+        tasks.push(this.loadRawData(tableName, ddbFilepath));
+        continue;
+      }
+
       const filepath = path.join(folder, `raw.${tableName}.json`);
       if (fs.existsSync(filepath)) {
-        tasks.push(this.loadData(tableName, filepath));
+        tasks.push(this.loadRawData(tableName, filepath));
       }
     }
     await Promise.all(tasks);
@@ -111,7 +112,7 @@ export class DynamoDbPlugin implements Plugin {
     await Promise.all(tasks);
   };
 
-  private loadData = async (tableName: string, filepath: string) => {
+  private loadRawData = async (tableName: string, filepath: string) => {
     const buffer = fs.readFileSync(filepath);
     const items = JSON.parse(buffer.toString()) as object[];
 

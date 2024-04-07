@@ -1,8 +1,8 @@
 /** @type {import("jest").Config} */
 const config = {
   projects: [
-    "<rootDir>/jest.dynamodb.config.cjs",
-    // "<rootDir>/jest.mysql.config.cjs",
+    // "<rootDir>/jest.dynamodb.config.cjs",
+    "<rootDir>/jest.mysql.config.cjs",
   ],
 };
 
