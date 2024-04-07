@@ -19,6 +19,7 @@
   "scripts": {
     "build": "tsc --build",
     "fmt": "prettier -w ./pkgs ./tsconfig.*",
+    "fmt-check": "prettier --check ./pkgs ./tsconfig.*",
     "test": "npm run --ws test",
     "test:dynamodb": "npm run -ws --if-present test:dynamodb",
     "test:mysql": "npm run -ws --if-present test:mysql"
