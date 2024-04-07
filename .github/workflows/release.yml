@@ -25,4 +25,4 @@ jobs:
         run: npm set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
 
       - name: Publish
-        run: npm publish --access public
+        run: npm publish -ws --access public
