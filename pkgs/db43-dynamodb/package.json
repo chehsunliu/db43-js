@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "./dist",
+    "./src"
+  ],
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.549.0",
     "@aws-sdk/lib-dynamodb": "^3.549.0",
