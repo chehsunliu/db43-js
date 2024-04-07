@@ -4,7 +4,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@chehsunliu/db43-types": "^0.1.0"
+    "@chehsunliu/db43-types": "*"
   },
   "scripts": {
     "test": "jest"
