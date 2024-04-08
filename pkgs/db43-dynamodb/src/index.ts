@@ -8,7 +8,10 @@ import { Plugin } from "@chehsunliu/db43-types";
 const maxWindowSize = 25;
 
 type DynamoDbPluginProps = {
-  client: DynamoDBClient;
+  region: string;
+  endpoint: string;
+  accessKeyId: string;
+  secretAccessKey: string;
 };
 
 type TableMeta = {
@@ -23,7 +26,14 @@ export class DynamoDbPlugin implements Plugin {
   private _tableMeta: TableMeta | undefined;
 
   constructor(props: DynamoDbPluginProps) {
-    this.client = props.client;
+    this.client = new DynamoDBClient({
+      region: props.region,
+      endpoint: props.endpoint,
+      credentials: {
+        accessKeyId: props.accessKeyId,
+        secretAccessKey: props.secretAccessKey,
+      },
+    });
     this.docClient = DynamoDBDocumentClient.from(this.client);
   }
 
