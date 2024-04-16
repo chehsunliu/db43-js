@@ -12,9 +12,6 @@
     },
     {
       "path": "pkgs/db43-test"
-    },
-    {
-      "path": "pkgs/db43-types"
     }
   ]
 }

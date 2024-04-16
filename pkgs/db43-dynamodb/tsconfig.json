@@ -9,9 +9,6 @@
   "references": [
     {
       "path": "../db43"
-    },
-    {
-      "path": "../db43-types"
     }
   ]
 }

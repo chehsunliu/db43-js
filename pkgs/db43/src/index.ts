@@ -1,9 +1,17 @@
-import { Plugin } from "@chehsunliu/db43-types";
+export type Plugin = {
+  truncate: () => Promise<void>;
+  load: (folder: string) => Promise<void>;
+  release: () => Promise<void>;
+};
 
 let plugins: Plugin[] = [];
 
 type ConfigureInput = {
   plugins: Plugin[];
+};
+
+type LoadInput = {
+  folder: string;
 };
 
 export const configure = (input: ConfigureInput) => {
@@ -14,10 +22,10 @@ export const truncate = async () => {
   await Promise.all(plugins.map((p) => p.truncate()));
 };
 
-type LoadInput = {
-  folder: string;
-};
-
 export const load = async (input: LoadInput) => {
   await Promise.all(plugins.map((p) => p.load(input.folder)));
+};
+
+export const release = async () => {
+  await Promise.all(plugins.map((p) => p.release()));
 };

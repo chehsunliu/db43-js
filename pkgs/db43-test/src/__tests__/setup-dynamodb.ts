@@ -17,10 +17,16 @@ configureRepo(new DynamoDbPostRepository({ tableName: "posts" }, client));
 
 beforeAll(async () => {
   const plugin = new DynamoDbPlugin({
-    region: "us-west-2",
-    endpoint: "http://127.0.0.1:8000",
-    accessKeyId: "xxx",
-    secretAccessKey: "xxx",
+    connection: {
+      region: "us-west-2",
+      endpoint: "http://127.0.0.1:8000",
+      accessKeyId: "xxx",
+      secretAccessKey: "xxx",
+    },
   });
   db43.configure({ plugins: [plugin] });
+});
+
+afterAll(async () => {
+  await db43.release();
 });

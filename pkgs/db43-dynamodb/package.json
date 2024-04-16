@@ -10,8 +10,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.549.0",
     "@aws-sdk/lib-dynamodb": "^3.549.0",
-    "@chehsunliu/db43": "*",
-    "@chehsunliu/db43-types": "*"
+    "@chehsunliu/db43": "*"
   },
   "scripts": {
     "test": "jest"

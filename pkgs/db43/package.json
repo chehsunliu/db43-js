@@ -7,9 +7,6 @@
     "./dist",
     "./src"
   ],
-  "dependencies": {
-    "@chehsunliu/db43-types": "*"
-  },
   "scripts": {
     "test": "jest"
   }
