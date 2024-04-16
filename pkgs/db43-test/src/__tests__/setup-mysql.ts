@@ -15,30 +15,32 @@ beforeAll(async () => {
       user: "root",
       password: "xxx",
       database: "demo",
-      multipleStatements: true
-    }
+      multipleStatements: true,
+    },
   });
   configureRepo(
     new MySqlPostRepository(
       {
         userTableName: "users",
         postTableName: "posts",
-        commentTableName: "comments"
+        commentTableName: "comments",
       },
-      knex2
-    )
+      knex2,
+    ),
   );
 
   db43.configure({
-    plugins: [new MySqlPlugin({
-      connection: {
-        host: "127.0.0.1",
-        port: 3306,
-        user: "root",
-        password: "xxx",
-        database: "demo"
-      }
-    })]
+    plugins: [
+      new MySqlPlugin({
+        connection: {
+          host: "127.0.0.1",
+          port: 3306,
+          user: "root",
+          password: "xxx",
+          database: "demo",
+        },
+      }),
+    ],
   });
 });
 
