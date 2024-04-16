@@ -5,8 +5,7 @@
     "pkgs/db43",
     "pkgs/db43-dynamodb",
     "pkgs/db43-mysql",
-    "pkgs/db43-test",
-    "pkgs/db43-types"
+    "pkgs/db43-test"
   ],
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",

@@ -9,7 +9,6 @@
   ],
   "dependencies": {
     "@chehsunliu/db43": "*",
-    "@chehsunliu/db43-types": "*",
     "knex": "^3.1.0",
     "knex-schema-inspector": "^3.1.0",
     "mysql2": "^3.9.3"
